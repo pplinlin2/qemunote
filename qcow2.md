@@ -3,7 +3,7 @@
 * [block/qcow2.h] - struct QCowHeader
 
 |Byte1|Byte2|Byte3|Byte4|
-|-|-|-|-|
+|---|---|---|---|
 |magic|version|backing_file_offset|...|
 |backing_file_size|cluster_bits|size|...|
 |crypt_method|l1_size|l1_table_offset|...|
@@ -13,7 +13,7 @@
 * [block/qcow2.h] - struct QCowSnapshotHeader
 
 |Byte1|Byte2|Byte3|Byte4|
-|-|-|-|-|
+|---|---|---|---|
 |l1_table_offset|...|l1_size|id_str_size & name_size|
 |date_sec|date_nsec|vm_clock_nsec|...|
 |vm_state_size|extra_data_size|||

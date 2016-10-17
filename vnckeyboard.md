@@ -67,7 +67,7 @@ protocol_client_msg
 ```
 * 可以在wireshark中filter輸入vnc.key_down來偵測封包
 
-|message-type(4)|down-flag(1)|padding(2)|keysym(4)  |
+|message-type(1)|down-flag(1)|padding(2)|keysym(4)  |
 |---------------|------------|----------|-----------|
 |             04|          01|     00 00|00 00 00 40|
 |      Key Event|         Yes|          |          @|
