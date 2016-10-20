@@ -1,6 +1,6 @@
 # QMP 
 ### Basic Usage
-* __Q__emu Monitor Protocol
+* **Q**emu **M**onitor **P**rotocol
 * 從virsh執行:
 ```
 [~] # virsh qemu-monitor-command ${VM_NAME} --pretty '{"execute":"query-version"}'
@@ -34,6 +34,7 @@ void qmp_hello_world(Error **errp)
     },
 ```
 * 執行`virsh qemu-monitor-command ${VM_NAME} --pretty '{"execute":"hello-world"}'`後後可在log檔看到`Hello world!^ ^`
+
 ### Argument
 * 在`qapi-schema.json`中加入`{ 'command': 'hello-world', 'data': { '*message': 'str' } }`
   * *號代表這個欄位是optional
@@ -91,7 +92,7 @@ void qmp_hello_world(bool has_message, const char *message, Error **errp)
 ```
 # HMP
 ### Basic Usage
-* Human Monitor Protocol
+* **H**uman **M**onitor **P**rotocol
 * Help: `virsh qemu-monitor-command ${VM_NAME} --hmp "help"`
 ### Hello World
 * 在`hmp.c`加入
