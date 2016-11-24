@@ -1,4 +1,54 @@
 # Libvirt state file
+
+### Virsh save
+```
+qemuDomainSave [qemu/qemu_driver.c]
+    qemuDomainSaveFlags
+        qemuDomainSaveInternal
+            qemuDomainSaveMemory
+                qemuMigrationToFile [qemu/qemu_migration.c]
+                    qemuMonitorMigrateToFd [qemu/qemu_monitor.c]
+                        qemuMonitorJSONMigrate [qemu/qemu_monitor_json.c]
+            qemuProcessStop
+```
+
+### Virsh restore
+```
+qemuDomainRestore [qemu/qemu_driver.c]
+    qemuDomainRestoreFlags
+        qemuDomainSaveImageOpen
+        qemuDomainSaveImageStartVM
+```
+
+### Qemu save
+```
+# qemu-system-x86_64 ... -monitor stdio
+(qemu) stop
+(qemu) migrate -d exec:cat>/tmp/vm.out
+(qemu) info migrate
+capabilities: xbzrle: off rdma-pin-all: off auto-converge: off zero-blocks: off compress: off events: off postcopy-ram: off
+Migration status: completed
+total time: 27753 milliseconds
+downtime: 6 milliseconds
+setup: 20 milliseconds
+transferred ram: 907680 kbytes
+throughput: 268.04 mbps
+remaining ram: 0 kbytes
+total ram: 4211528 kbytes
+duplicate: 1656442 pages
+skipped: 0 pages
+normal: 449322 pages
+normal bytes: 1797288 kbytes
+dirty sync count: 3
+(qemu) quit
+```
+
+### Qemu restore
+```
+# qemu-system-x86_64 ... -monitor stdio -incoming "exec:cat /tmp/vm.out"
+(qemu) cont
+```
+
 ### Structure of state file
 
 #### Qemu header
